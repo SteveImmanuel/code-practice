@@ -16,5 +16,5 @@ class Solution:
 
 
 sol = Solution()
-n = 6
+n = 8
 print(sol.numTrees(n))
