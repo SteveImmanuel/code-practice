@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+# https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
 from typing import Optional
 """
 # Definition for a Node.
@@ -13,10 +13,13 @@ class Node:
 class Solution:
     def calculate_depth(self, root):
         if root is not None:
-            return 1 + self.calculate_depth(root.left)
+            return 1 + max(self.calculate_depth(root.left), self.calculate_depth(root.right))
         return 0
 
     def get_nodes_of_level(self, root, current_level, target_level):
+        if root is None:
+            return []
+
         if current_level == target_level:
             return [root]
         else:
@@ -41,7 +44,7 @@ root.left = Node(2)
 root.right = Node(3)
 root.left.left = Node(4)
 root.left.right = Node(5)
-root.right.left = Node(6)
+# root.right.left = Node(6)
 root.right.right = Node(7)
 sol = Solution()
 sol.connect(root)
