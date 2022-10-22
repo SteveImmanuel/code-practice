@@ -21,8 +21,6 @@ class Solution:
 
         while counter_s[s[l]] > 0:
             counter_s[s[l]] -= 1
-            if counter_s[s[l]] == 0:
-                del counter_s[s[l]]
             l += 1
 
         current_min = (l, r-1)
@@ -31,8 +29,6 @@ class Solution:
 
             while counter_s[s[l]] > 0:
                 counter_s[s[l]] -= 1
-                if counter_s[s[l]] == 0:
-                    del counter_s[s[l]]
                 l += 1
 
             if i - l + 1 < current_min[1] - current_min[0] + 1:
