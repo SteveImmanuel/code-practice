@@ -2,7 +2,7 @@ class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         n, m = len(matrix), len(matrix[0])
         memory = [[0 for _ in range(m)] for _ in range(n)]
-        for _ in range(20):
+        for _ in range(15):
             for i in range(n):
                 for j in range(m):
                     if i==0 and j==0:
