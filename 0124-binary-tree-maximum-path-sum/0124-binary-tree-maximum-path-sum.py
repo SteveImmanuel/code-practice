@@ -7,15 +7,17 @@
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         max_path_list = []
-        self.traverse(root, max_path_list)
-        return max(max_path_list)
+        _, _, _, _, _, res = self.traverse(root, -100000000)
+        return res
         
-    def traverse(self, root, max_path_list):
+    def traverse(self, root, cur_max):
         if not root:
-            return 0, 0, 0, False, False
+            return 0, 0, 0, False, False, -100000000
         
-        l_res = self.traverse(root.left, max_path_list)
-        r_res = self.traverse(root.right, max_path_list)
+        l_res = self.traverse(root.left, cur_max)
+        r_res = self.traverse(root.right, cur_max)
+        
+        cur_max = max(cur_max, l_res[-1], r_res[-1])
         
         #calculate l_max
         if l_res[3] and l_res[4]:
@@ -37,16 +39,12 @@ class Solution:
         
         
         if l_max <= 0 and r_max <= 0:
-            max_path_list.append(root.val)
-            return root.val, 0, 0, False, False
+            return root.val, 0, 0, False, False, max(cur_max, root.val)
         elif l_max <= 0:
-            max_path_list.append(root.val + r_max)
-            return root.val + r_max, 0, r_max, False, True
+            return root.val + r_max, 0, r_max, False, True, max(cur_max, root.val + r_max)
         elif r_max <= 0:
-            max_path_list.append(root.val + l_max)
-            return root.val + l_max, l_max, 0, True, False
+            return root.val + l_max, l_max, 0, True, False, max(cur_max, root.val + l_max)
         else:
-            max_path_list.append(root.val + l_max + r_max)
-            return root.val + l_max + r_max, l_max, r_max, True, True
+            return root.val + l_max + r_max, l_max, r_max, True, True, max(cur_max, root.val + l_max + r_max)
         
         
