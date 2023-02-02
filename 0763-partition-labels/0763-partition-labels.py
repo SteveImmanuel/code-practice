@@ -6,7 +6,7 @@ class Solution:
                 occ[c] = [idx, idx]
             else:
                 occ[c][1] = idx
-        print(occ)
+        # print(occ)
         intervals = list(occ.values())
         intervals.sort(key=lambda x:x[0])
         i = 0
