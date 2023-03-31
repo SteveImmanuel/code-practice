@@ -1,16 +1,14 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        arr = []
-        for item in matrix:
-            arr += item
-            
-        l, h = 0, len(arr) - 1
+        m, n = len(matrix), len(matrix[0])            
+        l, h = 0, m*n - 1
         while l <= h:
-            m = (l + h) // 2
-            if arr[m] == target:
+            mid = (l + h) // 2
+            el = matrix[mid // n][mid % n]
+            if el == target:
                 return True
-            elif arr[m] > target:
-                h = m - 1
+            elif el > target:
+                h = mid - 1
             else:
-                l = m + 1
+                l = mid + 1
         return False
