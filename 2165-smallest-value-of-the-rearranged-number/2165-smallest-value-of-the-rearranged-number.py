@@ -26,7 +26,6 @@ class Solution:
                 idx = i
                 if digits[idx] > 0:
                     res.append(str(idx) * digits[idx])
-            print(res)
         
         res = ''.join(res)
         return int(res) * mul
