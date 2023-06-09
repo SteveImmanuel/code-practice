@@ -10,6 +10,7 @@ class Solution:
     #         return letters[0]
     #     return letter
     
+    # binsearch O(logn)
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
         idx = self.bisect_right(letters, target)
         if idx >= len(letters):
@@ -22,7 +23,7 @@ class Solution:
         
         while l < r:
             m = (l + r) // 2
-            if ord(arr[m]) <= ord(target):
+            if arr[m] <= target:
                 l = m + 1
             else:
                 r = m
