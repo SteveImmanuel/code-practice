@@ -9,8 +9,6 @@ class Solution:
         visited = set()
         while heap:
             cur_prob, cur_node = heappop(heap)
-            if cur_node in visited:
-                continue
             
             visited.add(cur_node)
             cur_prob *= -1
