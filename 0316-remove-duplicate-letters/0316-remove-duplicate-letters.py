@@ -10,7 +10,6 @@ class Solution:
             if s[i] in added:
                 continue
             
-            buffer = []
             while len(stack) > 0 and ord(stack[-1]) > ord(s[i]) and occ[stack[-1]] > i:
                 added.discard(stack.pop())
             
