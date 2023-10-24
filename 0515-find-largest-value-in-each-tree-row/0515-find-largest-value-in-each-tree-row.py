@@ -10,15 +10,14 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
-        level_dict = defaultdict(list)
+        level_dict = defaultdict(lambda: -float('inf'))
         self.traverse(root, 0, level_dict)
-        res = list(map(max, level_dict.values()))
-        return res
+        return list(level_dict.values())
     
     def traverse(self, cur_node, cur_depth, level_dict):
         if not cur_node:
             return
         
-        level_dict[cur_depth].append(cur_node.val)
+        level_dict[cur_depth] = max(level_dict[cur_depth], cur_node.val)
         self.traverse(cur_node.left, cur_depth + 1, level_dict)
         self.traverse(cur_node.right, cur_depth + 1, level_dict)        
