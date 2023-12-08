@@ -8,13 +8,13 @@ class Solution:
     def tree2str(self, root: Optional[TreeNode]) -> str:
         if not root:
             return ''
-        else:
-            l_child = self.tree2str(root.left)
-            r_child = self.tree2str(root.right)
-            if r_child != '':
-                r_child = '(' + r_child + ')'
-                l_child = '(' + l_child + ')'
-            elif l_child != '':
-                l_child = '(' + l_child + ')'
-            
-            return str(root.val) + l_child + r_child
+        
+        result = str(root.val)
+        
+        if root.left or root.right:
+            result += f'({self.tree2str(root.left)})'
+        
+        if root.right:
+            result += f'({self.tree2str(root.right)})'
+        
+        return result
