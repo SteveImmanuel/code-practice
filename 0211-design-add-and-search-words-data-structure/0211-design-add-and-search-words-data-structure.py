@@ -14,12 +14,14 @@ class WordDictionary:
         
     def _insert(self, word, idx, cur_node):
         if idx >= len(word):
-            cur_node.is_word = True
             return
         
         char = word[idx]
+        is_word = idx == len(word) - 1
         if char not in cur_node.children:
-            cur_node.children[char] = TreeNode(char, {}, False)
+            cur_node.children[char] = TreeNode(char, {}, is_word)
+        else:
+            cur_node.children[char].is_word = cur_node.children[char].is_word or is_word
             
         self._insert(word, idx + 1, cur_node.children[char])
             
