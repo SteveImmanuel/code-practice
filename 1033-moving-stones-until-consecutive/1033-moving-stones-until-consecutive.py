@@ -5,9 +5,7 @@ class Solution:
         max_move = stones[-1] - stones[0] - 2
         if stones[1] - 1 == stones[0] and stones[1] + 1 == stones[2]:
             min_move = 0
-        elif stones[1] - 1 == stones[0] or stones[1] + 1 == stones[2]:
-            min_move = 1
-        elif stones[1] - 2 == stones[0] or stones[1] + 2 == stones[2]:
+        elif stones[1] - stones[0] <= 2 or stones[2]- stones[1] <= 2:
             min_move = 1
         else:
             min_move = 2
