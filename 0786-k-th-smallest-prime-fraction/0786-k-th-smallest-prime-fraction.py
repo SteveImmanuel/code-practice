@@ -24,15 +24,15 @@ class Solution:
 #         return [res[1], res[2]]
     
     def kthSmallestPrimeFraction(self, arr: List[int], k: int) -> List[int]:
-        heap = [(arr[0] / arr[i], arr[0], arr[i], 0, i) for i in range(len(arr) - 1, 0, -1)]
+        heap = [(arr[0] / arr[i], 0, i) for i in range(len(arr) - 1, 0, -1)]
         heapq.heapify(heap)
         
         res = []
         while len(res) < k:
-            _, n, d, n_idx, d_idx = heapq.heappop(heap)
-            res.append([n, d])
+            _, n_idx, d_idx = heapq.heappop(heap)
+            res.append([arr[n_idx], arr[d_idx]])
             if n_idx + 1 < d_idx:
-                heapq.heappush(heap, (arr[n_idx+1]/ arr[d_idx], arr[n_idx+1], arr[d_idx], n_idx+1, d_idx))
+                heapq.heappush(heap, (arr[n_idx+1]/ arr[d_idx], n_idx+1, d_idx))
         
         return res[-1]
             
