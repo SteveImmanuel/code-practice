@@ -10,16 +10,19 @@ class Solution:
                 queue.popleft()
             # print('    remove queue items', queue)
             # flip bit if odd
+            need_flip = not bool(nums[i])
             is_flip = len(queue) % 2 == 1
             if is_flip: 
-                nums[i] = 0 if nums[i] == 1 else 1
+                # nums[i] = 0 if nums[i] == 1 else 1
+                need_flip = not need_flip
             # print(f'    after initial flip {is_flip}', nums[i])
             
             # flip and add barrier if the bit is 0
-            if nums[i] == 0:
+            # if nums[i] == 0:
+            if need_flip:
                 total += 1
                 queue.append(i + k)
-                nums[i] = 1
+                # nums[i] = 1
             
             # print('after', i, nums, queue)
             # print()
